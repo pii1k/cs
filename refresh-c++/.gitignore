@@ -1,0 +1,12 @@
+org.eclipse.xtext.ide.server.ServerLauncher-debug.log
+api_descriptor.pb
+compile_commands.json
+**/build
+**/.vscode/*.json
+*.swp
+**/cmake/cmake_*.sh
+**/.clangd
+**/.gradle
+res/external/gtest-report/gtest_report
+res/external/gtest-report/gtest_report/**
+.cache/**
