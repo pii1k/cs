@@ -1,5 +1,40 @@
 <Week 1. C++ 핵심 리프레시 & GitHub 세팅>
 Day 1
+ 스마트 포인터 & 순환 참조 방지
+ unique/shared/weak + 순환 참조 예제 2종 (good/bad)
+ leak counter & cycle break
+ Day 2
+ STL 컨테이너 성능 분석 + Move Semantics
+ vector vs list 삽입/삭제 성능 비교
+ push_back vs emplace_back + move ctor 성능 측정
+ BSP·IoT 장비 최적화
+Day 3
+ RAII & 예외 안전성
+ 파일/소켓/mutex RAII 래퍼 3종
+ noexcept와 예외 안전 설계 장비 드라이버, 커널 리소스 관리
+Day 4
+ Memory Pool & Allocator
+ 고정 크기 메모리 풀 구현
+ STL custom allocator 적용 임베디드 메모리 제한 환경 대응
+Day 5
+ 커널 모듈·BSP 감각 익히기
+ QEMU에 커널 모듈 빌드 & insmod/rmmod 실습
+ Device Tree 수정 mini 실습 BSP 통합 역량
+Day 6
+ 네트워크·IPC
+ TCP/UDP echo server/client
+ gdb attach로 네트워크 중 디버깅 IoT 장비 통신 디버깅
+Day 7
+ Logger + Memory Pool + 네트워크 통합 미니 프로젝트
+
+#### 변경 포인트
+ 스마트 포인터/순환 참조 → Day 1에서 바로 깊게 (이미 했던 내용 포함)
+ Move Semantics → Day 2에 STL 성능 비교랑 같이 묶어 바로 실습
+ Memory Pool/Allocator → Qualcomm에서 메모리 제약 환경 경험 강조할 수 있게 Day 4에 당김
+ BSP/커널 모듈 → Week 1에 미리 맛보고, Week 3~4에서 Yocto로 확장
+<!--
+<Week 1. C++ 핵심 리프레시 & GitHub 세팅>
+Day 1
  GitHub repo qualcomm_prep 생성 (README에 목표 작성)
  C++ 스마트 포인터(unique_ptr, shared_ptr) 기본 예제 3개 작성
  프로그래머스 Lv3 1문제 풀이 (간단한 STL 활용 문제)
@@ -38,4 +73,4 @@ Day 7
 <첫 주 목표>
 GitHub repo에 최소 코드 6개 + 리포트 4개 업로드
 C++ 기초 및 메모리 관리 → 실무형 예제까지 연결
-8주 플랜을 위한 작동하는 워크플로 구축
+8주 플랜을 위한 작동하는 워크플로 구축 -->
