@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file(GLOB example_srcs
     "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/2025-08-09/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/2025-*/*.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${example_srcs})
@@ -16,7 +16,7 @@ include(FetchContent)
 FetchContent_Declare(
   gtest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.12.0 
+  GIT_TAG release-1.12.0
 )
 FetchContent_GetProperties(gtest)
 
