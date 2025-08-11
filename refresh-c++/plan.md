@@ -1,4 +1,16 @@
-<Week 1. C++ 핵심 리프레시 & GitHub 세팅>
+목표를 좀 더 장기적으로 세분화 하여 나누기로 결정
+앞으로 이번주 4일동안 할 것들 아래와 같음
+3달 정도 계획: C++ 심화, CS 기초, 시스템, 성능 기초
+1. RAII & 예외 안전성
+    - 파일/소켓/mutex RAII 래퍼 구현
+2. 스마트 포인터 심화
+    - unique/shared/weak 내부 구조 분석
+3. Move/Forwarding
+    - move/emplace 실험 및 분석
+4. 컨테이너 구조
+    - vector/list/map 삽입/탐색 성능 측정
+
+<!-- <Week 1. C++ 핵심 리프레시 & GitHub 세팅>
 Day 1
  스마트 포인터 & 순환 참조 방지
  unique/shared/weak + 순환 참조 예제 2종 (good/bad)
@@ -7,7 +19,7 @@ Day 1
  STL 컨테이너 성능 분석 + Move Semantics
  vector vs list 삽입/삭제 성능 비교
  push_back vs emplace_back + move ctor 성능 측정
- BSP·IoT 장비 최적화
+ ~BSP·IoT 장비 최적화~ -> 장비가 없어서 패스
 Day 3
  RAII & 예외 안전성
  파일/소켓/mutex RAII 래퍼 3종
@@ -31,7 +43,7 @@ Day 7
  스마트 포인터/순환 참조 → Day 1에서 바로 깊게 (이미 했던 내용 포함)
  Move Semantics → Day 2에 STL 성능 비교랑 같이 묶어 바로 실습
  Memory Pool/Allocator → Qualcomm에서 메모리 제약 환경 경험 강조할 수 있게 Day 4에 당김
- BSP/커널 모듈 → Week 1에 미리 맛보고, Week 3~4에서 Yocto로 확장
+ BSP/커널 모듈 → Week 1에 미리 맛보고, Week 3~4에서 Yocto로 확장 -->
 <!--
 <Week 1. C++ 핵심 리프레시 & GitHub 세팅>
 Day 1
