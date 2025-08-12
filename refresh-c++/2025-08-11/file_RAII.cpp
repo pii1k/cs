@@ -104,7 +104,7 @@ private:
     int fd_ = -1;
 };
 
-class TESTRAII : public testing::Test
+class TESTFileRAII : public testing::Test
 {
 protected:
     void SetUp() override
@@ -114,14 +114,14 @@ protected:
     }
 };
 
-TEST_F(TESTRAII, FileNotExist)
+TEST_F(TESTFileRAII, FileNotExist)
 {
     FileDescriptorRAIIWrapper fd_wrapper = FileDescriptorRAIIWrapper::makeInstByReadOnly("no_such_file.txt");
     EXPECT_FALSE(fd_wrapper);
     EXPECT_NO_THROW(fd_wrapper.reset());
 }
 
-TEST_F(TESTRAII, CheckMoveSementics)
+TEST_F(TESTFileRAII, CheckMoveSementics)
 {
     FileDescriptorRAIIWrapper fd_wrapper_1 = FileDescriptorRAIIWrapper::makeInstByReadOnly(kTestFileName);
     EXPECT_TRUE(fd_wrapper_1);
@@ -135,7 +135,7 @@ TEST_F(TESTRAII, CheckMoveSementics)
     ::close(raw);
 }
 
-TEST_F(TESTRAII, ExchangeUsingReset)
+TEST_F(TESTFileRAII, ExchangeUsingReset)
 {
     FileDescriptorRAIIWrapper fd_wrapper = FileDescriptorRAIIWrapper::makeInstByReadOnly(kTestFileName);
 

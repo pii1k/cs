@@ -10,6 +10,12 @@
 4. 컨테이너 구조
     - vector/list/map 삽입/탐색 성능 측정
 
+    1. 파일 RAII (UniqueFd) → 가장 단순, 패턴 확정
+    2. 소켓 RAII (UniqueSocket) → 동일 패턴 확장 + 오류/타임아웃 처리
+    3. mutex 사용 패턴 → std::lock_guard / unique_lock로 멀티스레드 안정화 테스트
+    4. CountingAlloc(카운팅 할당자) → 컨테이너 할당 관찰 지표 확보
+    5. 고정 풀 Allocator(간단 pool) → 실제 최적화 효과 확인
+
 <!-- <Week 1. C++ 핵심 리프레시 & GitHub 세팅>
 Day 1
  스마트 포인터 & 순환 참조 방지
