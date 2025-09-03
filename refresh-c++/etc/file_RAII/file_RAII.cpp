@@ -19,7 +19,7 @@ void makeTestFile(const string &text)
     if (f)
     {
         std::fwrite(text.data(), 1, text.size(), f);
-        std::fclose(f)
+        std::fclose(f);
     }
 }
 
