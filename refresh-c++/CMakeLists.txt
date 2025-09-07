@@ -4,7 +4,7 @@ project(refresh_cpp CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# fetch content - gtest
+# setting gtest
 include(FetchContent)
 FetchContent_Declare(
   gtest
@@ -19,14 +19,14 @@ if(NOT gtest_POPULATED)
   add_subdirectory(${gtest_SOURCE_DIR} ${gtest_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
-# setting executables 
+# setting executables
 set(main_file "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
-set(major_categories data_structure etc)
+set(major_categories algorithms etc)
 
 foreach(category IN LISTS major_categories)
   file(GLOB srcs CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/${category}/*/*.cpp")
   add_executable(${category}_test
-    ${srcs} 
+    ${srcs}
     ${main_file}
   )
   target_link_libraries(${category}_test

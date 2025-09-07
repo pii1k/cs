@@ -13,4 +13,8 @@
     "clang-format.style": "${workspaceFolder}/.clang-format",
     "clang-format.language.c.enable": true,
     "clang-format.language.cpp.enable": true,
+    "files.associations": {
+        "vector": "cpp",
+        "__config": "cpp"
+    },
 }
