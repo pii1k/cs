@@ -9,5 +9,5 @@ compile_commands.json
 **/.gradle
 res/external/gtest-report/gtest_report
 res/external/gtest-report/gtest_report/**
-.cache/**
+**/.cache
 **/target/

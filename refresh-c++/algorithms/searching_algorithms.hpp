@@ -6,9 +6,10 @@ namespace SearchingAlgorithms
 {
 int linearSearch(const std::vector<int> &data, int target)
 {
-    for(const auto& i : data)
+    for (const auto &i : data)
     {
-        if(i == target){
+        if (i == target)
+        {
             return i;
         }
     }
@@ -22,17 +23,17 @@ int binarySearch(const std::vector<int> &data, int target)
     int left = 0;
     int right = (int)data.size() - 1;
 
-    while(left <= right)
+    while (left <= right)
     {
         // int mid = (left + right) / 2; -> overflow 발생 가능
         int mid = left + (right - left) / 2;
         int mid_d = data[mid];
 
-        if(target == mid_d)
+        if (target == mid_d)
         {
             return mid;
         }
-        else if(target < mid_d)
+        else if (target < mid_d)
         {
             right = mid;
         }
@@ -44,8 +45,8 @@ int binarySearch(const std::vector<int> &data, int target)
     return -1;
 }
 
-template<class ForwardIt, class T>
-ForwardIt lowerBound(ForwardIt first, ForwardIt last, const T& val)
+template <class ForwardIt, class T>
+ForwardIt lowerBound(ForwardIt first, ForwardIt last, const T &val)
 {
     ForwardIt it;
     typename std::iterator_traits<ForwardIt>::difference_type count, step; // difference_type: 두 iter 사이의 거리를 나타냄
@@ -58,7 +59,7 @@ ForwardIt lowerBound(ForwardIt first, ForwardIt last, const T& val)
         std::advance(it, step); // advance: iter 이동 함수
     }
 
-    if(*it < val)
+    if (*it < val)
     {
         first = ++it;
         count -= step + 1;
@@ -71,25 +72,29 @@ ForwardIt lowerBound(ForwardIt first, ForwardIt last, const T& val)
     return first;
 }
 
-template<class ForwardIt, class T>
-ForwardIt upperBound(ForwardIt first, ForwardIt last, const T& val)
+template <class ForwardIt, class T>
+ForwardIt upperBound(ForwardIt first, ForwardIt last, const T &val)
 {
     ForwardIt it;
     typename std::iterator_traits<ForwardIt>::difference_type count, step;
     count = std::distance(first, last);
 
-    while (count > 0) {
+    while (count > 0)
+    {
         it = first;
         step = count / 2;
         std::advance(it, step);
 
-        if (!(val < *it)) {
+        if (!(val < *it))
+        {
             first = ++it;
             count -= step + 1;
-        } else {
+        }
+        else
+        {
             count = step;
         }
     }
     return first;
 }
-}
+} // namespace SearchingAlgorithms
