@@ -10,3 +10,4 @@ compile_commands.json
 res/external/gtest-report/gtest_report
 res/external/gtest-report/gtest_report/**
 .cache/**
+**/target/
