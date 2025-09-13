@@ -1,2 +1,5 @@
 pub mod searching;
-pub use searching::binary_search;
+pub mod sorting;
+
+pub use searching::*;
+pub use sorting::*;

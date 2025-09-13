@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 
 #include <algorithm>
-#include <any>
 #include <cstdio>
+#include <cstring>
 #include <functional>
 #include <memory>
 #include <stdexcept>

@@ -21,25 +21,25 @@ int linearSearch(const std::vector<int> &data, int target)
 int binarySearch(const std::vector<int> &data, int target)
 {
     int left = 0;
-    int right = (int)data.size() - 1;
+    int right = data.size() - 1;
 
     while (left <= right)
     {
-        // int mid = (left + right) / 2; -> overflow 발생 가능
-        int mid = left + (right - left) / 2;
+        int mid = (left + right) / 2;
         int mid_d = data[mid];
 
         if (target == mid_d)
         {
-            return mid;
+            return mid_d;
         }
-        else if (target < mid_d)
+
+        if (target < mid_d)
         {
-            right = mid;
+            right = mid - 1;
         }
         else
         {
-            left = mid;
+            left = mid + 1;
         }
     }
     return -1;

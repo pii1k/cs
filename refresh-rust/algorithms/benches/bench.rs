@@ -1,10 +1,10 @@
-use algorithms::binary_search;
+use algorithms::*;
 use criterion::{criterion_group, criterion_main, Criterion, BatchSize, black_box};
 
 fn bench_binary_search(c: &mut Criterion) {
     let mut g = c.benchmark_group("binary_search");
 
-    for &n in &[1_000usize, 10_000, 100_000, 1_000_000] {
+    for &n in &[1_000, 10_000, 100_000, 1_000_000] {
         g.bench_function(format!("n={}", n), |b| {
             b.iter_batched(
                 || {

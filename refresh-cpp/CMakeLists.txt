@@ -24,7 +24,10 @@ set(main_file "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 set(major_categories algorithms etc)
 
 foreach(category IN LISTS major_categories)
-  file(GLOB srcs CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/${category}/*/*.cpp")
+  file(GLOB srcs CONFIGURE_DEPENDS
+   "${CMAKE_CURRENT_SOURCE_DIR}/${category}/*.cpp"
+   "${CMAKE_CURRENT_SOURCE_DIR}/${category}/*/*.cpp"
+  )
   add_executable(${category}_test
     ${srcs}
     ${main_file}
