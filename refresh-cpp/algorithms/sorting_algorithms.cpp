@@ -1,8 +1,5 @@
 #include "sorting_algorithms.hpp"
 
-#include <cstddef>
-#include <map>
-
 namespace SortingAlgorithms
 {
 std::vector<int> bubbleSort(const std::vector<int> &data)
@@ -23,7 +20,7 @@ std::vector<int> bubbleSort(const std::vector<int> &data)
                 sorted = true;
             }
         }
-        if (!sorted) // no more steps left to sort
+        if (!sorted)
             break;
     }
     return v;
@@ -73,38 +70,92 @@ std::vector<int> insertionSort(const std::vector<int> &data)
     return v;
 }
 
-std::vector<int> quickSort(const std::vector<int> &data)
+int lomutoPartition(std::vector<int> &v, int low, int high, int pivot_idx)
+{
+    int pivot = v[pivot_idx];
+    int iter_idx = low;
+
+    for (int k = low; k < high; k++)
+    {
+        if (v[k] < pivot)
+        {
+            std::swap(v[iter_idx], v[k]);
+            iter_idx++;
+        }
+    }
+    std::swap(v[iter_idx], v[pivot_idx]);
+    return iter_idx;
+}
+
+int hoarePartition(std::vector<int> &v, int low, int high, int pivot_idx)
+{
+    int pivot = v[pivot_idx];
+    int left = low - 1;
+    int right = high + 1;
+
+    while (true)
+    {
+        while (true)
+        {
+            left++;
+            if (v[left] >= pivot)
+                break;
+        }
+
+        while (true)
+        {
+            right--;
+            if (v[right] <= pivot)
+                break;
+        }
+
+        if (left >= right)
+            return right;
+
+        std::swap(v[left], v[right]);
+    }
+}
+
+void quickSortImpl(std::vector<int> &v,
+                   int low,
+                   int high,
+                   QuickSortPartitionType pivot_type,
+                   bool using_median_pivot)
+{
+    if (low >= high)
+        return;
+
+    switch (pivot_type)
+    {
+    case QuickSortPartitionType::LomutoPartitionScheme:
+    {
+        int pivot_idx = using_median_pivot ? low + (high - low) / 2 : high;
+        int partition_idx = lomutoPartition(v, low, high, pivot_idx);
+        quickSortImpl(v, low, partition_idx - 1, pivot_type, using_median_pivot);
+        quickSortImpl(v, partition_idx + 1, high, pivot_type, using_median_pivot);
+        break;
+    }
+    case QuickSortPartitionType::HoarePartitionScheme:
+    {
+        int pivot_idx = using_median_pivot ? low + (high - low) / 2 : low;
+        if (pivot_idx == high)
+            return;
+
+        int partition_idx = hoarePartition(v, low, high, pivot_idx);
+        quickSortImpl(v, low, partition_idx, pivot_type, using_median_pivot);
+        quickSortImpl(v, partition_idx + 1, high, pivot_type, using_median_pivot);
+        break;
+    }
+    }
+}
+
+std::vector<int> quickSort(const std::vector<int> &data, QuickSortPartitionType pivot_type, bool using_median_pivot)
 {
     if (data.size() < 2)
         return data;
 
     std::vector<int> v = data;
-
-    int first = v.front();
-    size_t mid_idx = data.size() / 2;
-    int mid = v[mid_idx];
-    int end = v.back();
-
-    std::vector<int> val_vec{first, mid, end};
-    std::map<int, size_t> idx_val_map{{first, 0}, {mid, mid_idx}, {end, v.size() - 1}};
-
-    auto getMedianIdx = [&]() -> size_t
-    {
-        bubbleSort(val_vec);
-        return idx_val_map[val_vec[1]];
-    };
-
-    size_t pivot = getMedianIdx();
-
-    std::vector<int> left{}, right{};
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        if (v[i] < v[pivot])
-            left.push_back(v[i]);
-        else
-            right.push_back(v[i]);
-    }
-
-    return {};
+    quickSortImpl(v, 0, static_cast<int>(v.size()) - 1, pivot_type, using_median_pivot);
+    return v;
 }
 } // namespace SortingAlgorithms
