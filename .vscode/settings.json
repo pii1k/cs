@@ -17,4 +17,5 @@
         "vector": "cpp",
         "__config": "cpp"
     },
+    "cmake.ignoreCMakeListsMissing": true,
 }
