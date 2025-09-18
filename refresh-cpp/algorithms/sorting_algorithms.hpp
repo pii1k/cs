@@ -10,10 +10,15 @@ enum class QuickSortPartitionType
     HoarePartitionScheme,
 };
 
+enum class MergeType
+{
+    TopDown,
+    BottomUp,
+};
+
 std::vector<int> bubbleSort(const std::vector<int> &data);
 std::vector<int> selectionSort(const std::vector<int> &data);
 std::vector<int> insertionSort(const std::vector<int> &data);
-std::vector<int> quickSort(const std::vector<int> &data,
-     QuickSortPartitionType pivot_type,
-     bool using_median_pivot = false);
+std::vector<int> quickSort(const std::vector<int> &data, QuickSortPartitionType pivot_type, bool using_median_pivot = false);
+std::vector<int> mergeSort(const std::vector<int> &data, MergeType merge_type);
 } // namespace SortingAlgorithms

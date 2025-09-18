@@ -1,4 +1,7 @@
 #include "sorting_algorithms.hpp"
+#include <algorithm>
+#include <cstddef>
+#include <vector>
 
 namespace SortingAlgorithms
 {
@@ -157,5 +160,99 @@ std::vector<int> quickSort(const std::vector<int> &data, QuickSortPartitionType 
     std::vector<int> v = data;
     quickSortImpl(v, 0, static_cast<int>(v.size()) - 1, pivot_type, using_median_pivot);
     return v;
+}
+
+namespace
+{
+std::vector<int> mergeVectors(const std::vector<int> &left_vec, const std::vector<int> &right_vec)
+{
+    std::vector<int> sorted;
+    sorted.reserve(left_vec.size() + right_vec.size());
+
+    size_t l = 0;
+    size_t r = 0;
+    while (l < left_vec.size() && r < right_vec.size())
+    {
+        if (left_vec[l] <= right_vec[r])
+            sorted.push_back(left_vec[l++]);
+        else
+            sorted.push_back(right_vec[r++]);
+    }
+
+    while (l < left_vec.size())
+        sorted.push_back(left_vec[l++]);
+    while (r < right_vec.size())
+        sorted.push_back(right_vec[r++]);
+
+    return sorted;
+}
+
+std::vector<int> mergeSortTopDownImpl(const std::vector<int> &data, size_t left, size_t right)
+{
+    if (right - left <= 1)
+        return std::vector<int>(data.begin() + static_cast<std::ptrdiff_t>(left),
+                                data.begin() + static_cast<std::ptrdiff_t>(right));
+
+    size_t mid = left + (right - left) / 2;
+    auto left_vec = mergeSortTopDownImpl(data, left, mid);
+    auto right_vec = mergeSortTopDownImpl(data, mid, right);
+    return mergeVectors(left_vec, right_vec);
+}
+
+std::vector<int> mergeSortBottomUpImpl(const std::vector<int> &data)
+{
+    if (data.size() < 2)
+        return data;
+
+    std::vector<int> src = data;
+    std::vector<int> dest(data.size());
+
+    for (size_t width = 1; width < data.size(); width *= 2)
+    {
+        for (size_t i = 0; i < data.size(); i += 2 * width)
+        {
+            size_t left = i;
+            size_t mid = std::min(i + width, data.size());
+            size_t right = std::min(i + 2 * width, data.size());
+
+            size_t l = left;
+            size_t r = mid;
+            size_t idx = left;
+
+            while (l < mid && r < right)
+            {
+                if (src[l] <= src[r])
+                    dest[idx++] = src[l++];
+                else
+                    dest[idx++] = src[r++];
+            }
+
+            while (l < mid)
+                dest[idx++] = src[l++];
+            while (r < right)
+                dest[idx++] = src[r++];
+        }
+
+        std::swap(src, dest);
+    }
+
+    return src;
+}
+} // namespace
+
+std::vector<int> mergeSort(const std::vector<int> &data, MergeType merge_type)
+{
+    if (data.size() < 2)
+        return data;
+
+    switch (merge_type)
+    {
+    case MergeType::TopDown:
+        return mergeSortTopDownImpl(data, 0, data.size());
+    case MergeType::BottomUp:
+        return mergeSortBottomUpImpl(data);
+    }
+
+    return {};
 }
 } // namespace SortingAlgorithms

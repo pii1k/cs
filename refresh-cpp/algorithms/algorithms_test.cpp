@@ -68,3 +68,23 @@ TEST_F(TestAlgorithms, QuickSortHoarePartition)
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_5, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_5_expect);
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_6, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_6_expect);
 };
+
+TEST_F(TestAlgorithms, MergeSortTopDown)
+{
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_1, sort::MergeType::TopDown), test_vec::sorting::vec_1_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_2, sort::MergeType::TopDown), test_vec::sorting::vec_2_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_3, sort::MergeType::TopDown), test_vec::sorting::vec_3_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_4, sort::MergeType::TopDown), test_vec::sorting::vec_4_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_5, sort::MergeType::TopDown), test_vec::sorting::vec_5_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_6, sort::MergeType::TopDown), test_vec::sorting::vec_6_expect);
+};
+
+TEST_F(TestAlgorithms, MergeSortBottomUp)
+{
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_1, sort::MergeType::BottomUp), test_vec::sorting::vec_1_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_2, sort::MergeType::BottomUp), test_vec::sorting::vec_2_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_3, sort::MergeType::BottomUp), test_vec::sorting::vec_3_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_4, sort::MergeType::BottomUp), test_vec::sorting::vec_4_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_5, sort::MergeType::BottomUp), test_vec::sorting::vec_5_expect);
+    ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_6, sort::MergeType::BottomUp), test_vec::sorting::vec_6_expect);
+};
