@@ -180,8 +180,6 @@ std::vector<int> quickSort(const std::vector<int> &data, QuickSortPartitionType 
     return v;
 }
 
-namespace
-{
 std::vector<int> mergeVectors(const std::vector<int> &left_vec, const std::vector<int> &right_vec)
 {
     std::vector<int> sorted;
@@ -256,21 +254,27 @@ std::vector<int> mergeSortBottomUpImpl(const std::vector<int> &data)
 
     return src;
 }
-} // namespace
 
 std::vector<int> mergeSort(const std::vector<int> &data, MergeType merge_type)
 {
     if (data.size() < 2)
         return data;
 
+    std::vector<int> sorted{};
+
     switch (merge_type)
     {
     case MergeType::TopDown:
-        return mergeSortTopDownImpl(data, 0, data.size());
+        sorted = mergeSortTopDownImpl(data, 0, data.size());
     case MergeType::BottomUp:
-        return mergeSortBottomUpImpl(data);
+        sorted = mergeSortBottomUpImpl(data);
     }
 
-    return {};
+    return sorted;
 }
+
+std::vector<int> heapSort(const std::vector<int> &data)
+{
+}
+
 } // namespace SortingAlgorithms
