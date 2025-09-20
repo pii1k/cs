@@ -75,6 +75,12 @@ std::vector<int> insertionSort(const std::vector<int> &data)
 
 int lomutoPartition(std::vector<int> &v, int low, int high, int pivot_idx)
 {
+    if (pivot_idx != high)
+    {
+        std::swap(v[pivot_idx], v[high]);
+        pivot_idx = high;
+    }
+
     int pivot = v[pivot_idx];
     int iter_idx = low;
 
@@ -119,6 +125,21 @@ int hoarePartition(std::vector<int> &v, int low, int high, int pivot_idx)
     }
 }
 
+int medianOfThreeIndex(const std::vector<int> &v, int low, int high)
+{
+    int mid = low + (high - low) / 2;
+
+    const int &a = v[low];
+    const int &b = v[mid];
+    const int &c = v[high];
+
+    if ((a <= b && b <= c) || (c <= b && b <= a))
+        return mid;
+    if ((b <= a && a <= c) || (c <= a && a <= b))
+        return low;
+    return high;
+}
+
 void quickSortImpl(std::vector<int> &v,
                    int low,
                    int high,
@@ -132,7 +153,7 @@ void quickSortImpl(std::vector<int> &v,
     {
     case QuickSortPartitionType::LomutoPartitionScheme:
     {
-        int pivot_idx = using_median_pivot ? low + (high - low) / 2 : high;
+        int pivot_idx = using_median_pivot ? medianOfThreeIndex(v, low, high) : high;
         int partition_idx = lomutoPartition(v, low, high, pivot_idx);
         quickSortImpl(v, low, partition_idx - 1, pivot_type, using_median_pivot);
         quickSortImpl(v, partition_idx + 1, high, pivot_type, using_median_pivot);
@@ -140,10 +161,7 @@ void quickSortImpl(std::vector<int> &v,
     }
     case QuickSortPartitionType::HoarePartitionScheme:
     {
-        int pivot_idx = using_median_pivot ? low + (high - low) / 2 : low;
-        if (pivot_idx == high)
-            return;
-
+        int pivot_idx = using_median_pivot ? medianOfThreeIndex(v, low, high) : low;
         int partition_idx = hoarePartition(v, low, high, pivot_idx);
         quickSortImpl(v, low, partition_idx, pivot_type, using_median_pivot);
         quickSortImpl(v, partition_idx + 1, high, pivot_type, using_median_pivot);

@@ -49,7 +49,7 @@ TEST_F(TestAlgorithms, InsertionSort)
     ASSERT_EQ(sort::insertionSort(test_vec::sorting::vec_6), test_vec::sorting::vec_6_expect);
 };
 
-TEST_F(TestAlgorithms, QuickSortLomutoPartition)
+TEST_F(TestAlgorithms, QuickSortLomutoPartitionDefaultPivot)
 {
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_1, sort::QuickSortPartitionType::LomutoPartitionScheme), test_vec::sorting::vec_1_expect);
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_2, sort::QuickSortPartitionType::LomutoPartitionScheme), test_vec::sorting::vec_2_expect);
@@ -59,7 +59,17 @@ TEST_F(TestAlgorithms, QuickSortLomutoPartition)
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_6, sort::QuickSortPartitionType::LomutoPartitionScheme), test_vec::sorting::vec_6_expect);
 };
 
-TEST_F(TestAlgorithms, QuickSortHoarePartition)
+TEST_F(TestAlgorithms, QuickSortLomutoPartitionMedianPivot)
+{
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_1, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_1_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_2, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_2_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_3, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_3_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_4, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_4_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_5, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_5_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_6, sort::QuickSortPartitionType::LomutoPartitionScheme, true), test_vec::sorting::vec_6_expect);
+};
+
+TEST_F(TestAlgorithms, QuickSortHoarePartitionDefaultPivot)
 {
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_1, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_1_expect);
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_2, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_2_expect);
@@ -67,6 +77,16 @@ TEST_F(TestAlgorithms, QuickSortHoarePartition)
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_4, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_4_expect);
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_5, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_5_expect);
     ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_6, sort::QuickSortPartitionType::HoarePartitionScheme), test_vec::sorting::vec_6_expect);
+};
+
+TEST_F(TestAlgorithms, QuickSortHoarePartitionMedianPivot)
+{
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_1, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_1_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_2, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_2_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_3, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_3_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_4, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_4_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_5, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_5_expect);
+    ASSERT_EQ(sort::quickSort(test_vec::sorting::vec_6, sort::QuickSortPartitionType::HoarePartitionScheme, true), test_vec::sorting::vec_6_expect);
 };
 
 TEST_F(TestAlgorithms, MergeSortTopDown)
