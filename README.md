@@ -1,9 +1,9 @@
 # refresh-projects
-Repository to keep my C++ and Rust algorithm practice in sync.
+Repository to keep my C++ and Rust DSA practice in sync.
 
 ## Layout
-- `refresh-cpp/`: C++20 implementations tested with GoogleTest.
-- `refresh-rust/`: Rust workspace that mirrors the same exercises, with Criterion benches.
+- `refresh-cpp/`:  Workspace implement DSA in C++20 with GoogleTest.
+- `refresh-rust/`: Rust workspace that mirrors the same exercises.
 - `notes/`: Planning scratchpad (see `notes/algorithms.md`).
 
 ## C++ quick start
