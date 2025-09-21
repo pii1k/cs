@@ -108,3 +108,13 @@ TEST_F(TestAlgorithms, MergeSortBottomUp)
     ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_5, sort::MergeType::BottomUp), test_vec::sorting::vec_5_expect);
     ASSERT_EQ(sort::mergeSort(test_vec::sorting::vec_6, sort::MergeType::BottomUp), test_vec::sorting::vec_6_expect);
 };
+
+TEST_F(TestAlgorithms, HeapSort)
+{
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_1), test_vec::sorting::vec_1_expect);
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_2), test_vec::sorting::vec_2_expect);
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_3), test_vec::sorting::vec_3_expect);
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_4), test_vec::sorting::vec_4_expect);
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_5), test_vec::sorting::vec_5_expect);
+    ASSERT_EQ(sort::heapSort(test_vec::sorting::vec_6), test_vec::sorting::vec_6_expect);
+};

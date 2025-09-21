@@ -261,20 +261,67 @@ std::vector<int> mergeSort(const std::vector<int> &data, MergeType merge_type)
         return data;
 
     std::vector<int> sorted{};
-
     switch (merge_type)
     {
     case MergeType::TopDown:
         sorted = mergeSortTopDownImpl(data, 0, data.size());
+        break;
     case MergeType::BottomUp:
         sorted = mergeSortBottomUpImpl(data);
+        break;
     }
 
     return sorted;
 }
 
+void heapify(std::vector<int> &v, size_t root_idx, size_t heap_size)
+{
+    while (true)
+    {
+        size_t left_child_idx = 2 * root_idx + 1;
+        if (left_child_idx >= heap_size)
+            break;
+
+        size_t right_child_idx = left_child_idx + 1;
+        size_t larger_child_idx = left_child_idx;
+
+        if (right_child_idx < heap_size && v[right_child_idx] > v[left_child_idx])
+            larger_child_idx = right_child_idx;
+
+        if (v[root_idx] >= v[larger_child_idx])
+            break;
+
+        std::swap(v[root_idx], v[larger_child_idx]);
+        root_idx = larger_child_idx;
+    }
+}
+
+void buildMaxHeap(std::vector<int> &v)
+{
+    if (v.size() < 2)
+        return;
+
+    // 0-based 인덱스에서 자식노드는 2*i+1, 2*i+2 이므로 마지막 내부노드: (n - 2) / 2
+    int n = v.size();
+    for (size_t i = n / 2; i-- > 0;)
+        heapify(v, i, n);
+}
+
 std::vector<int> heapSort(const std::vector<int> &data)
 {
+    if (data.size() < 2)
+        return data;
+
+    std::vector<int> v = data;
+    buildMaxHeap(v);
+
+    for (size_t heap_size = v.size(); heap_size > 1; heap_size--)
+    {
+        std::swap(v[0], v[heap_size - 1]);
+        heapify(v, 0, heap_size - 1);
+    }
+
+    return v;
 }
 
 } // namespace SortingAlgorithms
